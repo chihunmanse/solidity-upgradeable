@@ -2,5 +2,10 @@
 
 ```shell
 npm install
-npx hardhat test
+```
+
+## 1. migration
+
+```shell
+npx hardhat run scripts/migration.ts
 ```
