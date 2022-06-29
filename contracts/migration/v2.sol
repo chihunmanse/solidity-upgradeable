@@ -7,10 +7,12 @@ interface IVersion1 {
 }
 
 contract Version2 {
+    address public owner;
     IVersion1 public version1;
     bool public contractActive;
 
     constructor(IVersion1 _version1) {
+        owner = msg.sender;
         version1 = _version1;
         contractActive = true;
     }
@@ -30,5 +32,10 @@ contract Version2 {
             counts[msg.sender] += v1Count;
         }
         counts[msg.sender] += 2;
+    }
+
+    function setContractActive(bool _contractActive) external {
+        require(msg.sender == owner, "only owner");
+        contractActive = _contractActive;
     }
 }
