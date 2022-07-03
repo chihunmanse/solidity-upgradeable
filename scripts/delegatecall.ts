@@ -2,8 +2,10 @@ import { ethers } from "hardhat";
 
 async function main() {
   const users = await ethers.getSigners();
-  const v1Users = users.slice(0, 10);
-  const v2Users = users.slice(11, 20);
+  const v1Users = users.slice(0, 5);
+  const v2Users = users.slice(6, 10);
+  const v3Users = users.slice(11, 15);
+  const v4Users = users.slice(16, 20);
 
   const V1 = await ethers.getContractFactory("ImplementationV1");
   const v1 = await V1.deploy();
@@ -57,13 +59,29 @@ async function main() {
   await versionUp2.wait();
   console.log("Set Implementation for V3");
 
-  console.log("V3 ------ Invalid Case");
-  console.log("V3 ------ V2 users second Count ------ ");
-  for (let i = 0; i < v2Users.length; i++) {
-    const count = await proxy.connect(v2Users[i]).count();
+  console.log("V3 ------ V3 users Count ------ ");
+  for (let i = 0; i < v3Users.length; i++) {
+    const count = await proxy.connect(v3Users[i]).count();
     await count.wait();
 
-    console.log(`V2 user${i} count:`, await proxy.counts(v2Users[i].address));
+    console.log(`V3 user${i} count:`, await proxy.counts(v3Users[i].address));
+  }
+
+  const V4 = await ethers.getContractFactory("ImplementationV4");
+  const v4 = await V4.deploy();
+  await v4.deployed();
+  console.log("V4 deployed to:", v4.address);
+
+  const versionUp3 = await proxy.setImplementation(v4.address);
+  await versionUp3.wait();
+  console.log("Set Implementation for V4");
+
+  console.log("V4 ------ V4 users Count ------ ");
+  for (let i = 0; i < v4Users.length; i++) {
+    const count = await proxy.connect(v4Users[i]).count();
+    await count.wait();
+
+    console.log(`V4 user${i} count:`, await proxy.counts(v4Users[i].address));
   }
 }
 
