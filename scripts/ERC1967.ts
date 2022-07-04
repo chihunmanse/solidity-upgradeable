@@ -9,6 +9,8 @@ const V1ABI = [
 const V3ABI = ["function upgradeTo(address)"];
 
 const V4ABI = [
+  "function count()",
+  "function counts(address) view returns (uint256)",
   "function storageTest(address)",
   "function getAddress() view returns (address)",
 ];
@@ -88,6 +90,14 @@ async function main() {
   console.log("Upgrade V4");
 
   proxy = new ethers.Contract(erc1967Proxy.address, V4ABI, users[0]);
+
+  console.log("V4 ------ V2 users second Count ------");
+  for (let i = 0; i < v2Users.length; i++) {
+    const count = await proxy.connect(v2Users[i]).count();
+    await count.wait();
+
+    console.log(`V2 user${i} count:`, await proxy.counts(v2Users[i].address));
+  }
 
   console.log("V4 ------ storage test ------");
   const storageTest = await proxy.storageTest(users[0].address);
