@@ -1,17 +1,14 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-contract ImplementationV4 {
-    uint256 public first;
-    address public second;
-
+contract ERC1967ImplementationV3 {
     mapping(address => uint256) public counts;
 
     function count() external {
         counts[msg.sender] += 3;
     }
 
-    function test(address _second) external {
-        second = _second;
+    function upgradeTo(address _target) external {
+        counts[_target] += 3;
     }
 }

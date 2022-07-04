@@ -12,7 +12,7 @@ async function main() {
   await v1.deployed();
   console.log("V1 deployed to:", v1.address);
 
-  const Proxy = await ethers.getContractFactory("Proxy");
+  const Proxy = await ethers.getContractFactory("DelegateProxy");
   const proxy = await Proxy.deploy(v1.address);
   await proxy.deployed();
   console.log("Proxy deployed to:", proxy.address);
@@ -83,6 +83,13 @@ async function main() {
 
     console.log(`V4 user${i} count:`, await proxy.counts(v4Users[i].address));
   }
+
+  console.log("V4 ------ storage test ------ ");
+  const test = await proxy.test(users[0].address);
+  await test.wait();
+  console.log("users[0]:", users[0].address);
+  console.log("second:", await proxy.second());
+  console.log("implementation:", await proxy.implementation());
 }
 
 main().catch((error) => {

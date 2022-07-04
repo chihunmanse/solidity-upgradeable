@@ -15,3 +15,9 @@ npx hardhat run scripts/migration.ts
 ```shell
 npx hardhat run scripts/delegatecall.ts
 ```
+
+## 2. ERC1967
+
+```shell
+npx hardhat run scripts/ERC1967.ts
+```
