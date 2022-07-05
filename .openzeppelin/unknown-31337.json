@@ -1,0 +1,156 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+  },
+  "proxies": [
+    {
+      "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "txHash": "0xa92548024cdb27dbfaf905b9cbac86f34a2220fa5917601d3022e570fb189fe7",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "db59da53a8a39aa35854a8e6ad8512570b9f655d8afc5c905ea72f563735c9e9": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "layout": {
+        "storage": [
+          {
+            "label": "initiallizes",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:5"
+          },
+          {
+            "label": "counts",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:6"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "e103cec75953056bf95cf4c3563f651debaf2080f2c18f428a2fa643870bd187": {
+      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      "txHash": "0xe59e9c3b2aa5067dd1e339890a5cfd17dc47fee482cc67447ed9ad89abc0514f",
+      "layout": {
+        "storage": [
+          {
+            "label": "initiallizes",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:5"
+          },
+          {
+            "label": "counts",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:6"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "dde6470f4891e8ea704e5dbc7d9d1434a19df9ccda689f9d716c93ccc6b21cd0": {
+      "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      "txHash": "0xf0b7f8f56ca87c5c40cac2bb03bade6b8d31cc9b4f1d6796eb1dea6d7d7745e7",
+      "layout": {
+        "storage": [
+          {
+            "label": "initiallizes",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:5"
+          },
+          {
+            "label": "counts",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "TransparentImplementationV1",
+            "src": "contracts/transparent/v1.sol:6"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  }
+}

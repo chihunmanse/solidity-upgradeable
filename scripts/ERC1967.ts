@@ -1,5 +1,5 @@
 import { ethers } from "hardhat";
-const { expect } = require("chai");
+import { expect } from "chai";
 
 const V1ABI = [
   "function count()",
@@ -25,7 +25,7 @@ async function main() {
   await v1.deployed();
   console.log("V1 deployed to:", v1.address);
 
-  const ERC1967Proxy = await ethers.getContractFactory("ERC1967Proxy");
+  const ERC1967Proxy = await ethers.getContractFactory("ERC1967");
   const erc1967Proxy = await ERC1967Proxy.deploy(v1.address, "0x");
   await erc1967Proxy.deployed();
   console.log("ERC1967Proxy deployed to:", erc1967Proxy.address);

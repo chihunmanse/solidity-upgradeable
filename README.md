@@ -21,3 +21,9 @@ npx hardhat run scripts/delegatecall.ts
 ```shell
 npx hardhat run scripts/ERC1967.ts
 ```
+
+## 2. TransparentProxy
+
+```shell
+npx hardhat run scripts/transparent.ts
+```
