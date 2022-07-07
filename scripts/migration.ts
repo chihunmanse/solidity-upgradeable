@@ -31,7 +31,7 @@ async function main() {
     const count = await v2.connect(v1Users[i]).count();
     await count.wait();
 
-    console.log(`V1 user${i} count:`, await v2.counts(v1Users[i].address));
+    console.log(`V1 User${i} count:`, await v2.counts(v1Users[i].address));
   }
 
   console.log("V2 ------ V2 users first Count ------");
@@ -39,7 +39,7 @@ async function main() {
     const count = await v2.connect(v2Users[i]).count();
     await count.wait();
 
-    console.log(`V2 user${i} count:`, await v2.counts(v2Users[i].address));
+    console.log(`V2 User${i} count:`, await v2.counts(v2Users[i].address));
   }
 
   console.log("V2 ------ V1 users second Count ------");
@@ -47,7 +47,7 @@ async function main() {
     const count = await v2.connect(v1Users[i]).count();
     await count.wait();
 
-    console.log(`V1 user${i} count:`, await v2.counts(v1Users[i].address));
+    console.log(`V1 User${i} count:`, await v2.counts(v1Users[i].address));
   }
 }
 

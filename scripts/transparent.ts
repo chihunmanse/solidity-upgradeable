@@ -1,7 +1,7 @@
 import { ethers, upgrades } from "hardhat";
 
 const V1ABI = [
-  "function initiallize(uint256 _count)",
+  "function initialize(uint256 _count)",
   "function count()",
   "function counts(address) view returns (uint256)",
 ];
@@ -22,9 +22,9 @@ async function main() {
   console.log("V1 deployed to:", v1.address);
 
   const iface = new ethers.utils.Interface([
-    "function initiallize(uint256 _count)",
+    "function initialize(uint256 _count)",
   ]);
-  const callData = iface.encodeFunctionData("initiallize", [1]);
+  const callData = iface.encodeFunctionData("initialize", [1]);
   const TransparentProxy = await ethers.getContractFactory(
     "TransparentUpgradeableProxy"
   );
@@ -38,7 +38,7 @@ async function main() {
 
   let proxy = new ethers.Contract(transparentProxy.address, V1ABI, admin);
 
-  console.log("V1 initiallize Count:", await proxy.counts(users[0].address));
+  console.log("V1 initialize Count:", await proxy.counts(users[0].address));
 
   console.log("V1 ------ V1 users Count ------");
   for (let i = 0; i < v1Users.length; i++) {
@@ -47,21 +47,24 @@ async function main() {
     console.log(`V1 User${i} count:`, await proxy.counts(v1Users[i].address));
   }
 
-  const V2 = await ethers.getContractFactory("TransparentImplementationV2");
-  proxy = await upgrades.upgradeProxy(transparentProxy.address, V2, {
+  const importV1 = await upgrades.forceImport(transparentProxy.address, V1, {
     kind: "transparent",
-    call: { fn: "initiallize", args: [1] },
+  });
+  const V2 = await ethers.getContractFactory("TransparentImplementationV2");
+  proxy = await upgrades.upgradeProxy(importV1.address, V2, {
+    kind: "transparent",
+    call: { fn: "initialize", args: [1] },
   });
   console.log("Upgrade V2");
 
-  console.log("V2 initiallize Count:", await proxy.counts(proxyAdmin.address));
+  console.log("V2 initialize Count:", await proxy.counts(proxyAdmin.address));
 
   console.log("V2 ------ V1 users second Count ------");
   for (let i = 0; i < v1Users.length; i++) {
     const count = await proxy.connect(v1Users[i]).count();
     await count.wait();
 
-    console.log(`V1 user${i} count:`, await proxy.counts(v1Users[i].address));
+    console.log(`V1 User${i} count:`, await proxy.counts(v1Users[i].address));
   }
 
   console.log("V2 ------ V2 users Count ------");
@@ -69,7 +72,7 @@ async function main() {
     const count = await proxy.connect(v2Users[i]).count();
     await count.wait();
 
-    console.log(`V2 user${i} count:`, await proxy.counts(v2Users[i].address));
+    console.log(`V2 User${i} count:`, await proxy.counts(v2Users[i].address));
   }
 
   console.log("proxyAdmin:", proxyAdmin.address);

@@ -53,7 +53,7 @@ async function main() {
     const count = await proxy.connect(v1Users[i]).count();
     await count.wait();
 
-    console.log(`V1 user${i} count:`, await proxy.counts(v1Users[i].address));
+    console.log(`V1 User${i} count:`, await proxy.counts(v1Users[i].address));
   }
 
   console.log("V2 ------ V2 users Count ------");
@@ -61,7 +61,7 @@ async function main() {
     const count = await proxy.connect(v2Users[i]).count();
     await count.wait();
 
-    console.log(`V2 user${i} count:`, await proxy.counts(v2Users[i].address));
+    console.log(`V2 User${i} count:`, await proxy.counts(v2Users[i].address));
   }
 
   const V3 = await ethers.getContractFactory("ERC1967ImplementationV3");
@@ -96,7 +96,7 @@ async function main() {
     const count = await proxy.connect(v2Users[i]).count();
     await count.wait();
 
-    console.log(`V2 user${i} count:`, await proxy.counts(v2Users[i].address));
+    console.log(`V2 User${i} count:`, await proxy.counts(v2Users[i].address));
   }
 
   console.log("V4 ------ storage test ------");

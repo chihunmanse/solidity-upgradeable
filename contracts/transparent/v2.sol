@@ -4,12 +4,12 @@ pragma solidity ^0.8.0;
 import "./v1.sol";
 
 contract TransparentImplementationV2 is TransparentImplementationV1 {
-    function initiallize(uint256 _count) external virtual override {
+    function initialize(uint256 _count) external virtual override {
         uint256 version = 2;
-        require(!initiallizes[version], "already initiallize");
+        require(!initializes[version], "already initialize");
 
         counts[msg.sender] = _count + 1;
-        initiallizes[version] = true;
+        initializes[version] = true;
     }
 
     function count() external override {
